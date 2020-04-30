@@ -93,6 +93,10 @@ func NewSocket(network, addr string) (*Socket, error) {
 	if err != nil {
 		return nil, err
 	}
+	return NewPacketConnSocket(pc)
+}
+
+func NewPacketConnSocket(pc net.PacketConn) (*Socket, error) {
 	s := &Socket{
 		pc:          pc,
 		backlog:     make(chan *Conn, 5),
